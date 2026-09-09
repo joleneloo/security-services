@@ -118,8 +118,7 @@ enum VexDocumentStandard {
   // CSAF (JSON)
   VEX_DOCUMENT_STANDARD_CSAF_JSON = 2;
 
-  // OpenVEX (JSON)
-  VEX_DOCUMENT_STANDARD_OPENVEX_JSON = 3;
+  reserved 3;
 }
 
 // ==========================================
@@ -246,7 +245,6 @@ message ImageIdentifier {
 
   // The hardware model(s) applicable to this artifact.
   // If specific models are listed, this artifact only applies to those models.
-  // Set to ["*"] to indicate the artifact applies to all hardware models.
   oneof hardware {
     repeated string hardware_models = 3;
     AllHardwareModels all_hardware_models = 4;
@@ -260,14 +258,13 @@ message SbomArtifact {
   // The image identifier associated with this SBOM payload.
   ImageIdentifier identifier = 1;
 
-
   // The underlying SBOM specification standard.
   SbomDocumentStandard standard = 2;
 
   // A fully formed JWS in standard JSON Serialization format (Flattened).
   // The raw SBOM statement is Base64url-encoded and embedded within the "payload" field of this JSON object.  JWS JSON Serialization Spec:
- // https://datatracker.ietf.org/doc/html/rfc7515#section-7.2
- string jws_json = 3;
+  // https://datatracker.ietf.org/doc/html/rfc7515#section-7.2
+  string jws_json = 3;
 }
 
 // A VexArtifact represents a VEX document.
@@ -275,14 +272,13 @@ message VexArtifact {
   // The image identifier associated with this VEX payload.
   ImageIdentifier identifier = 1;
 
-
   // The underlying VEX specification standard.
   VexDocumentStandard standard = 2;
 
   // A fully formed JWS in standard JSON Serialization format (Flattened).
   // The raw VEX statement is Base64url-encoded and embedded within the "payload" field of this JSON object.  JWS JSON Serialization Spec:
- // https://datatracker.ietf.org/doc/html/rfc7515#section-7.2
- string jws_json = 3;
+  // https://datatracker.ietf.org/doc/html/rfc7515#section-7.2
+  string jws_json = 3;
 }
 
 // Metadata about the artifact.
